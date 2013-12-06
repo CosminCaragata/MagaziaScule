@@ -1,0 +1,741 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MagaziaSculeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="MagaziaSculeModelStoreContainer">
+          <EntitySet Name="Agent" EntityType="MagaziaSculeModel.Store.Agent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Customer" EntityType="MagaziaSculeModel.Store.Customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CustomerAdress" EntityType="MagaziaSculeModel.Store.CustomerAdress" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Machine" EntityType="MagaziaSculeModel.Store.Machine" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Operation" EntityType="MagaziaSculeModel.Store.Operation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ServiceFile" EntityType="MagaziaSculeModel.Store.ServiceFile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ServiceOperation" EntityType="MagaziaSculeModel.Store.ServiceOperation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SparePart" EntityType="MagaziaSculeModel.Store.SparePart" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="MagaziaSculeModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UsedSpare" EntityType="MagaziaSculeModel.Store.UsedSpare" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WorkOrder" EntityType="MagaziaSculeModel.Store.WorkOrder" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CustomerAdress_Customer" Association="MagaziaSculeModel.Store.FK_CustomerAdress_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="CustomerAdress" EntitySet="CustomerAdress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_CustomerAdress" Association="MagaziaSculeModel.Store.FK_Machine_CustomerAdress">
+            <End Role="CustomerAdress" EntitySet="CustomerAdress" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceFile_Machine" Association="MagaziaSculeModel.Store.FK_ServiceFile_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="ServiceFile" EntitySet="ServiceFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceFile_WorkOrder" Association="MagaziaSculeModel.Store.FK_ServiceFile_WorkOrder">
+            <End Role="WorkOrder" EntitySet="WorkOrder" />
+            <End Role="ServiceFile" EntitySet="ServiceFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceOperation_Operation" Association="MagaziaSculeModel.Store.FK_ServiceOperation_Operation">
+            <End Role="Operation" EntitySet="Operation" />
+            <End Role="ServiceOperation" EntitySet="ServiceOperation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceOperation_ServiceFile" Association="MagaziaSculeModel.Store.FK_ServiceOperation_ServiceFile">
+            <End Role="ServiceFile" EntitySet="ServiceFile" />
+            <End Role="ServiceOperation" EntitySet="ServiceOperation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsedSpare_ServiceFile" Association="MagaziaSculeModel.Store.FK_UsedSpare_ServiceFile">
+            <End Role="ServiceFile" EntitySet="ServiceFile" />
+            <End Role="UsedSpare" EntitySet="UsedSpare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsedSpare_SparePart" Association="MagaziaSculeModel.Store.FK_UsedSpare_SparePart">
+            <End Role="SparePart" EntitySet="SparePart" />
+            <End Role="UsedSpare" EntitySet="UsedSpare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrder_Agent" Association="MagaziaSculeModel.Store.FK_WorkOrder_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="WorkOrder" EntitySet="WorkOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrder_CustomerAdress" Association="MagaziaSculeModel.Store.FK_WorkOrder_CustomerAdress">
+            <End Role="CustomerAdress" EntitySet="CustomerAdress" />
+            <End Role="WorkOrder" EntitySet="WorkOrder" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="idAgent" />
+          </Key>
+          <Property Name="idAgent" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="text" />
+          <Property Name="Surname" Type="text" />
+          <Property Name="CompanyName" Type="text" />
+          <Property Name="CompanyAdress" Type="text" />
+          <Property Name="Phone" Type="text" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="idCustomer" />
+          </Key>
+          <Property Name="idCustomer" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerAdress">
+          <Key>
+            <PropertyRef Name="idCustomerAdress" />
+          </Key>
+          <Property Name="idCustomerAdress" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="text" Nullable="false" />
+          <Property Name="AdressLine1" Type="text" Nullable="false" />
+          <Property Name="Representant" Type="text" Nullable="false" />
+          <Property Name="Email" Type="text" Nullable="false" />
+          <Property Name="Phone" Type="text" Nullable="false" />
+          <Property Name="idCustomer" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Machine">
+          <Key>
+            <PropertyRef Name="idMachine" />
+          </Key>
+          <Property Name="idMachine" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idCustomerAdress" Type="int" Nullable="false" />
+          <Property Name="Name" Type="text" />
+          <Property Name="Type" Type="text" />
+          <Property Name="SerialNumber" Type="text" />
+        </EntityType>
+        <EntityType Name="Operation">
+          <Key>
+            <PropertyRef Name="idOperation" />
+          </Key>
+          <Property Name="idOperation" Type="int" Nullable="false" />
+          <Property Name="Name" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceFile">
+          <Key>
+            <PropertyRef Name="idServiceFile" />
+          </Key>
+          <Property Name="idServiceFile" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idWorkOrder" Type="int" Nullable="false" />
+          <Property Name="idMachine" Type="int" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="Comment" Type="text" />
+        </EntityType>
+        <EntityType Name="ServiceOperation">
+          <Key>
+            <PropertyRef Name="idServiceOperation" />
+          </Key>
+          <Property Name="idServiceOperation" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idOperation" Type="int" Nullable="false" />
+          <Property Name="idServiceFile" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SparePart">
+          <Key>
+            <PropertyRef Name="idSparePart" />
+          </Key>
+          <Property Name="idSparePart" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UsedSpare">
+          <Key>
+            <PropertyRef Name="idUsedSpare" />
+          </Key>
+          <Property Name="idUsedSpare" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idServiceFile" Type="int" Nullable="false" />
+          <Property Name="idSparePart" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkOrder">
+          <Key>
+            <PropertyRef Name="idWorkOrder" />
+          </Key>
+          <Property Name="idWorkOrder" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="CustomTime" Type="int" />
+          <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="Sent" Type="bit" Nullable="false" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="Closed" Type="bit" Nullable="false" />
+          <Property Name="idCustomerAdress" Type="int" />
+          <Property Name="idAgent" Type="int" />
+          <Property Name="idServiceFile" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_CustomerAdress_Customer">
+          <End Role="Customer" Type="MagaziaSculeModel.Store.Customer" Multiplicity="1" />
+          <End Role="CustomerAdress" Type="MagaziaSculeModel.Store.CustomerAdress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="idCustomer" />
+            </Principal>
+            <Dependent Role="CustomerAdress">
+              <PropertyRef Name="idCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_CustomerAdress">
+          <End Role="CustomerAdress" Type="MagaziaSculeModel.Store.CustomerAdress" Multiplicity="1" />
+          <End Role="Machine" Type="MagaziaSculeModel.Store.Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerAdress">
+              <PropertyRef Name="idCustomerAdress" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="idCustomerAdress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceFile_Machine">
+          <End Role="Machine" Type="MagaziaSculeModel.Store.Machine" Multiplicity="1" />
+          <End Role="ServiceFile" Type="MagaziaSculeModel.Store.ServiceFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="idMachine" />
+            </Principal>
+            <Dependent Role="ServiceFile">
+              <PropertyRef Name="idMachine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceFile_WorkOrder">
+          <End Role="WorkOrder" Type="MagaziaSculeModel.Store.WorkOrder" Multiplicity="1" />
+          <End Role="ServiceFile" Type="MagaziaSculeModel.Store.ServiceFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkOrder">
+              <PropertyRef Name="idWorkOrder" />
+            </Principal>
+            <Dependent Role="ServiceFile">
+              <PropertyRef Name="idWorkOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceOperation_Operation">
+          <End Role="Operation" Type="MagaziaSculeModel.Store.Operation" Multiplicity="1" />
+          <End Role="ServiceOperation" Type="MagaziaSculeModel.Store.ServiceOperation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operation">
+              <PropertyRef Name="idOperation" />
+            </Principal>
+            <Dependent Role="ServiceOperation">
+              <PropertyRef Name="idOperation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceOperation_ServiceFile">
+          <End Role="ServiceFile" Type="MagaziaSculeModel.Store.ServiceFile" Multiplicity="1" />
+          <End Role="ServiceOperation" Type="MagaziaSculeModel.Store.ServiceOperation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceFile">
+              <PropertyRef Name="idServiceFile" />
+            </Principal>
+            <Dependent Role="ServiceOperation">
+              <PropertyRef Name="idServiceFile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsedSpare_ServiceFile">
+          <End Role="ServiceFile" Type="MagaziaSculeModel.Store.ServiceFile" Multiplicity="1" />
+          <End Role="UsedSpare" Type="MagaziaSculeModel.Store.UsedSpare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceFile">
+              <PropertyRef Name="idServiceFile" />
+            </Principal>
+            <Dependent Role="UsedSpare">
+              <PropertyRef Name="idServiceFile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsedSpare_SparePart">
+          <End Role="SparePart" Type="MagaziaSculeModel.Store.SparePart" Multiplicity="1" />
+          <End Role="UsedSpare" Type="MagaziaSculeModel.Store.UsedSpare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SparePart">
+              <PropertyRef Name="idSparePart" />
+            </Principal>
+            <Dependent Role="UsedSpare">
+              <PropertyRef Name="idSparePart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrder_Agent">
+          <End Role="Agent" Type="MagaziaSculeModel.Store.Agent" Multiplicity="0..1" />
+          <End Role="WorkOrder" Type="MagaziaSculeModel.Store.WorkOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="idAgent" />
+            </Principal>
+            <Dependent Role="WorkOrder">
+              <PropertyRef Name="idAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrder_CustomerAdress">
+          <End Role="CustomerAdress" Type="MagaziaSculeModel.Store.CustomerAdress" Multiplicity="0..1" />
+          <End Role="WorkOrder" Type="MagaziaSculeModel.Store.WorkOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerAdress">
+              <PropertyRef Name="idCustomerAdress" />
+            </Principal>
+            <Dependent Role="WorkOrder">
+              <PropertyRef Name="idCustomerAdress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MagaziaSculeModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MagaziaSculeEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Agent" EntityType="MagaziaSculeModel.Agent" />
+          <EntitySet Name="Customer" EntityType="MagaziaSculeModel.Customer" />
+          <EntitySet Name="CustomerAdress" EntityType="MagaziaSculeModel.CustomerAdress" />
+          <EntitySet Name="Machine" EntityType="MagaziaSculeModel.Machine" />
+          <EntitySet Name="Operation" EntityType="MagaziaSculeModel.Operation" />
+          <EntitySet Name="ServiceFile" EntityType="MagaziaSculeModel.ServiceFile" />
+          <EntitySet Name="ServiceOperation" EntityType="MagaziaSculeModel.ServiceOperation" />
+          <EntitySet Name="SparePart" EntityType="MagaziaSculeModel.SparePart" />
+          <EntitySet Name="sysdiagrams" EntityType="MagaziaSculeModel.sysdiagrams" />
+          <EntitySet Name="UsedSpare" EntityType="MagaziaSculeModel.UsedSpare" />
+          <EntitySet Name="WorkOrder" EntityType="MagaziaSculeModel.WorkOrder" />
+          <AssociationSet Name="FK_WorkOrder_Agent" Association="MagaziaSculeModel.FK_WorkOrder_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="WorkOrder" EntitySet="WorkOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerAdress_Customer" Association="MagaziaSculeModel.FK_CustomerAdress_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="CustomerAdress" EntitySet="CustomerAdress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Machine_CustomerAdress" Association="MagaziaSculeModel.FK_Machine_CustomerAdress">
+            <End Role="CustomerAdress" EntitySet="CustomerAdress" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkOrder_CustomerAdress" Association="MagaziaSculeModel.FK_WorkOrder_CustomerAdress">
+            <End Role="CustomerAdress" EntitySet="CustomerAdress" />
+            <End Role="WorkOrder" EntitySet="WorkOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceFile_Machine" Association="MagaziaSculeModel.FK_ServiceFile_Machine">
+            <End Role="Machine" EntitySet="Machine" />
+            <End Role="ServiceFile" EntitySet="ServiceFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceOperation_Operation" Association="MagaziaSculeModel.FK_ServiceOperation_Operation">
+            <End Role="Operation" EntitySet="Operation" />
+            <End Role="ServiceOperation" EntitySet="ServiceOperation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceFile_WorkOrder" Association="MagaziaSculeModel.FK_ServiceFile_WorkOrder">
+            <End Role="WorkOrder" EntitySet="WorkOrder" />
+            <End Role="ServiceFile" EntitySet="ServiceFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceOperation_ServiceFile" Association="MagaziaSculeModel.FK_ServiceOperation_ServiceFile">
+            <End Role="ServiceFile" EntitySet="ServiceFile" />
+            <End Role="ServiceOperation" EntitySet="ServiceOperation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsedSpare_ServiceFile" Association="MagaziaSculeModel.FK_UsedSpare_ServiceFile">
+            <End Role="ServiceFile" EntitySet="ServiceFile" />
+            <End Role="UsedSpare" EntitySet="UsedSpare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsedSpare_SparePart" Association="MagaziaSculeModel.FK_UsedSpare_SparePart">
+            <End Role="SparePart" EntitySet="SparePart" />
+            <End Role="UsedSpare" EntitySet="UsedSpare" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="idAgent" />
+          </Key>
+          <Property Name="idAgent" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Surname" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="CompanyAdress" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="WorkOrder" Relationship="MagaziaSculeModel.FK_WorkOrder_Agent" FromRole="Agent" ToRole="WorkOrder" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="idCustomer" />
+          </Key>
+          <Property Name="idCustomer" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="CustomerAdress" Relationship="MagaziaSculeModel.FK_CustomerAdress_Customer" FromRole="Customer" ToRole="CustomerAdress" />
+        </EntityType>
+        <EntityType Name="CustomerAdress">
+          <Key>
+            <PropertyRef Name="idCustomerAdress" />
+          </Key>
+          <Property Name="idCustomerAdress" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="AdressLine1" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Representant" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="idCustomer" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="MagaziaSculeModel.FK_CustomerAdress_Customer" FromRole="CustomerAdress" ToRole="Customer" />
+          <NavigationProperty Name="Machine" Relationship="MagaziaSculeModel.FK_Machine_CustomerAdress" FromRole="CustomerAdress" ToRole="Machine" />
+          <NavigationProperty Name="WorkOrder" Relationship="MagaziaSculeModel.FK_WorkOrder_CustomerAdress" FromRole="CustomerAdress" ToRole="WorkOrder" />
+        </EntityType>
+        <EntityType Name="Machine">
+          <Key>
+            <PropertyRef Name="idMachine" />
+          </Key>
+          <Property Name="idMachine" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="idCustomerAdress" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="SerialNumber" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="CustomerAdress" Relationship="MagaziaSculeModel.FK_Machine_CustomerAdress" FromRole="Machine" ToRole="CustomerAdress" />
+          <NavigationProperty Name="ServiceFile" Relationship="MagaziaSculeModel.FK_ServiceFile_Machine" FromRole="Machine" ToRole="ServiceFile" />
+        </EntityType>
+        <EntityType Name="Operation">
+          <Key>
+            <PropertyRef Name="idOperation" />
+          </Key>
+          <Property Name="idOperation" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="ServiceOperation" Relationship="MagaziaSculeModel.FK_ServiceOperation_Operation" FromRole="Operation" ToRole="ServiceOperation" />
+        </EntityType>
+        <EntityType Name="ServiceFile">
+          <Key>
+            <PropertyRef Name="idServiceFile" />
+          </Key>
+          <Property Name="idServiceFile" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="idWorkOrder" Type="Int32" Nullable="false" />
+          <Property Name="idMachine" Type="Int32" Nullable="false" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Machine" Relationship="MagaziaSculeModel.FK_ServiceFile_Machine" FromRole="ServiceFile" ToRole="Machine" />
+          <NavigationProperty Name="WorkOrder" Relationship="MagaziaSculeModel.FK_ServiceFile_WorkOrder" FromRole="ServiceFile" ToRole="WorkOrder" />
+          <NavigationProperty Name="ServiceOperation" Relationship="MagaziaSculeModel.FK_ServiceOperation_ServiceFile" FromRole="ServiceFile" ToRole="ServiceOperation" />
+          <NavigationProperty Name="UsedSpare" Relationship="MagaziaSculeModel.FK_UsedSpare_ServiceFile" FromRole="ServiceFile" ToRole="UsedSpare" />
+          <Property Type="DateTime" Name="StartTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ServiceOperation">
+          <Key>
+            <PropertyRef Name="idServiceOperation" />
+          </Key>
+          <Property Name="idServiceOperation" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="idOperation" Type="Int32" Nullable="false" />
+          <Property Name="idServiceFile" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Operation" Relationship="MagaziaSculeModel.FK_ServiceOperation_Operation" FromRole="ServiceOperation" ToRole="Operation" />
+          <NavigationProperty Name="ServiceFile" Relationship="MagaziaSculeModel.FK_ServiceOperation_ServiceFile" FromRole="ServiceOperation" ToRole="ServiceFile" />
+        </EntityType>
+        <EntityType Name="SparePart">
+          <Key>
+            <PropertyRef Name="idSparePart" />
+          </Key>
+          <Property Name="idSparePart" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="UsedSpare" Relationship="MagaziaSculeModel.FK_UsedSpare_SparePart" FromRole="SparePart" ToRole="UsedSpare" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UsedSpare">
+          <Key>
+            <PropertyRef Name="idUsedSpare" />
+          </Key>
+          <Property Name="idUsedSpare" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="idServiceFile" Type="Int32" Nullable="false" />
+          <Property Name="idSparePart" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ServiceFile" Relationship="MagaziaSculeModel.FK_UsedSpare_ServiceFile" FromRole="UsedSpare" ToRole="ServiceFile" />
+          <NavigationProperty Name="SparePart" Relationship="MagaziaSculeModel.FK_UsedSpare_SparePart" FromRole="UsedSpare" ToRole="SparePart" />
+        </EntityType>
+        <EntityType Name="WorkOrder">
+          <Key>
+            <PropertyRef Name="idWorkOrder" />
+          </Key>
+          <Property Name="idWorkOrder" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="Sent" Type="Boolean" Nullable="false" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="Closed" Type="Boolean" Nullable="false" />
+          <Property Name="idCustomerAdress" Type="Int32" />
+          <Property Name="idAgent" Type="Int32" />
+          <Property Name="idServiceFile" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Agent" Relationship="MagaziaSculeModel.FK_WorkOrder_Agent" FromRole="WorkOrder" ToRole="Agent" />
+          <NavigationProperty Name="CustomerAdress" Relationship="MagaziaSculeModel.FK_WorkOrder_CustomerAdress" FromRole="WorkOrder" ToRole="CustomerAdress" />
+          <NavigationProperty Name="ServiceFile" Relationship="MagaziaSculeModel.FK_ServiceFile_WorkOrder" FromRole="WorkOrder" ToRole="ServiceFile" />
+          <Property Type="Int32" Name="CustomTime" />
+        </EntityType>
+        <Association Name="FK_WorkOrder_Agent">
+          <End Role="Agent" Type="MagaziaSculeModel.Agent" Multiplicity="0..1" />
+          <End Role="WorkOrder" Type="MagaziaSculeModel.WorkOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="idAgent" />
+            </Principal>
+            <Dependent Role="WorkOrder">
+              <PropertyRef Name="idAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerAdress_Customer">
+          <End Role="Customer" Type="MagaziaSculeModel.Customer" Multiplicity="1" />
+          <End Role="CustomerAdress" Type="MagaziaSculeModel.CustomerAdress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="idCustomer" />
+            </Principal>
+            <Dependent Role="CustomerAdress">
+              <PropertyRef Name="idCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Machine_CustomerAdress">
+          <End Role="CustomerAdress" Type="MagaziaSculeModel.CustomerAdress" Multiplicity="1" />
+          <End Role="Machine" Type="MagaziaSculeModel.Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerAdress">
+              <PropertyRef Name="idCustomerAdress" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="idCustomerAdress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkOrder_CustomerAdress">
+          <End Role="CustomerAdress" Type="MagaziaSculeModel.CustomerAdress" Multiplicity="0..1" />
+          <End Role="WorkOrder" Type="MagaziaSculeModel.WorkOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerAdress">
+              <PropertyRef Name="idCustomerAdress" />
+            </Principal>
+            <Dependent Role="WorkOrder">
+              <PropertyRef Name="idCustomerAdress" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceFile_Machine">
+          <End Role="Machine" Type="MagaziaSculeModel.Machine" Multiplicity="1" />
+          <End Role="ServiceFile" Type="MagaziaSculeModel.ServiceFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machine">
+              <PropertyRef Name="idMachine" />
+            </Principal>
+            <Dependent Role="ServiceFile">
+              <PropertyRef Name="idMachine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceOperation_Operation">
+          <End Role="Operation" Type="MagaziaSculeModel.Operation" Multiplicity="1" />
+          <End Role="ServiceOperation" Type="MagaziaSculeModel.ServiceOperation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Operation">
+              <PropertyRef Name="idOperation" />
+            </Principal>
+            <Dependent Role="ServiceOperation">
+              <PropertyRef Name="idOperation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceFile_WorkOrder">
+          <End Role="WorkOrder" Type="MagaziaSculeModel.WorkOrder" Multiplicity="1" />
+          <End Role="ServiceFile" Type="MagaziaSculeModel.ServiceFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkOrder">
+              <PropertyRef Name="idWorkOrder" />
+            </Principal>
+            <Dependent Role="ServiceFile">
+              <PropertyRef Name="idWorkOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceOperation_ServiceFile">
+          <End Role="ServiceFile" Type="MagaziaSculeModel.ServiceFile" Multiplicity="1" />
+          <End Role="ServiceOperation" Type="MagaziaSculeModel.ServiceOperation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceFile">
+              <PropertyRef Name="idServiceFile" />
+            </Principal>
+            <Dependent Role="ServiceOperation">
+              <PropertyRef Name="idServiceFile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsedSpare_ServiceFile">
+          <End Role="ServiceFile" Type="MagaziaSculeModel.ServiceFile" Multiplicity="1" />
+          <End Role="UsedSpare" Type="MagaziaSculeModel.UsedSpare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceFile">
+              <PropertyRef Name="idServiceFile" />
+            </Principal>
+            <Dependent Role="UsedSpare">
+              <PropertyRef Name="idServiceFile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsedSpare_SparePart">
+          <End Role="SparePart" Type="MagaziaSculeModel.SparePart" Multiplicity="1" />
+          <End Role="UsedSpare" Type="MagaziaSculeModel.UsedSpare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SparePart">
+              <PropertyRef Name="idSparePart" />
+            </Principal>
+            <Dependent Role="UsedSpare">
+              <PropertyRef Name="idSparePart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MagaziaSculeModelStoreContainer" CdmEntityContainer="MagaziaSculeEntities">
+          <EntitySetMapping Name="Agent">
+            <EntityTypeMapping TypeName="MagaziaSculeModel.Agent">
+              <MappingFragment StoreEntitySet="Agent">
+                <ScalarProperty Name="idAgent" ColumnName="idAgent" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyAdress" ColumnName="CompanyAdress" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="MagaziaSculeModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerAdress">
+            <EntityTypeMapping TypeName="MagaziaSculeModel.CustomerAdress">
+              <MappingFragment StoreEntitySet="CustomerAdress">
+                <ScalarProperty Name="idCustomerAdress" ColumnName="idCustomerAdress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AdressLine1" ColumnName="AdressLine1" />
+                <ScalarProperty Name="Representant" ColumnName="Representant" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Machine">
+            <EntityTypeMapping TypeName="MagaziaSculeModel.Machine">
+              <MappingFragment StoreEntitySet="Machine">
+                <ScalarProperty Name="idMachine" ColumnName="idMachine" />
+                <ScalarProperty Name="idCustomerAdress" ColumnName="idCustomerAdress" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operation">
+            <EntityTypeMapping TypeName="MagaziaSculeModel.Operation">
+              <MappingFragment StoreEntitySet="Operation">
+                <ScalarProperty Name="idOperation" ColumnName="idOperation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceFile">
+            <EntityTypeMapping TypeName="MagaziaSculeModel.ServiceFile">
+              <MappingFragment StoreEntitySet="ServiceFile">
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="idServiceFile" ColumnName="idServiceFile" />
+                <ScalarProperty Name="idWorkOrder" ColumnName="idWorkOrder" />
+                <ScalarProperty Name="idMachine" ColumnName="idMachine" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceOperation">
+            <EntityTypeMapping TypeName="MagaziaSculeModel.ServiceOperation">
+              <MappingFragment StoreEntitySet="ServiceOperation">
+                <ScalarProperty Name="idServiceOperation" ColumnName="idServiceOperation" />
+                <ScalarProperty Name="idOperation" ColumnName="idOperation" />
+                <ScalarProperty Name="idServiceFile" ColumnName="idServiceFile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SparePart">
+            <EntityTypeMapping TypeName="MagaziaSculeModel.SparePart">
+              <MappingFragment StoreEntitySet="SparePart">
+                <ScalarProperty Name="idSparePart" ColumnName="idSparePart" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MagaziaSculeModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsedSpare">
+            <EntityTypeMapping TypeName="MagaziaSculeModel.UsedSpare">
+              <MappingFragment StoreEntitySet="UsedSpare">
+                <ScalarProperty Name="idUsedSpare" ColumnName="idUsedSpare" />
+                <ScalarProperty Name="idServiceFile" ColumnName="idServiceFile" />
+                <ScalarProperty Name="idSparePart" ColumnName="idSparePart" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkOrder">
+            <EntityTypeMapping TypeName="MagaziaSculeModel.WorkOrder">
+              <MappingFragment StoreEntitySet="WorkOrder">
+                <ScalarProperty Name="CustomTime" ColumnName="CustomTime" />
+                <ScalarProperty Name="idWorkOrder" ColumnName="idWorkOrder" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="Sent" ColumnName="Sent" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Closed" ColumnName="Closed" />
+                <ScalarProperty Name="idCustomerAdress" ColumnName="idCustomerAdress" />
+                <ScalarProperty Name="idAgent" ColumnName="idAgent" />
+                <ScalarProperty Name="idServiceFile" ColumnName="idServiceFile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

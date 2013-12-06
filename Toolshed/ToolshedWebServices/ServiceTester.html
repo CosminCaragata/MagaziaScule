@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script>
+
+
+
+
+        function TestService() {
+            $.ajax({
+                type: "POST",
+                url: "WebForm1.aspx",
+                data: {
+                    type: "completeworkorder",
+                    workorderid: [1,2,3],
+                    servicefiles:
+                        [
+                            {
+                                usedspares: [{ id: 4, quantity: 20 }, { id: 6, quantity: 30 }],
+                                operationids: [2, 3, 4]
+                            },
+                            {
+                                usedspares: [{ id: 4, quantity: 20 }, { id: 6, quantity: 30 }],
+                                operationids: [2, 3, 4]
+                            }
+                        ]
+                },
+                success: function (data) {
+                    $("#serviceresult").text(data)
+                }
+               , dataType: ""
+            });
+        }
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Service name</td>
+            <td>
+                <input type="text" id="servicename" value="getworkordersforagent" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" value="Make request" onclick="TestService()" /></td>
+
+        </tr>
+
+    </table>
+    <div id="serviceresult">
+    </div>
+
+</body>
+</html>

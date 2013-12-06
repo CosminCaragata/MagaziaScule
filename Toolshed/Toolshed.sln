@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolshedWebServices", "ToolshedWebServices\ToolshedWebServices.csproj", "{2E4BB79D-C50C-4C12-A3DB-3609D86FCA11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toolshed", "Toolshed\Toolshed.csproj", "{0164DCCE-24BB-4E65-AD21-A54D359E0BEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolshedServices", "ToolshedServices\ToolshedServices.csproj", "{3747E8EA-007E-41A0-99E8-861E308D6960}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E4BB79D-C50C-4C12-A3DB-3609D86FCA11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E4BB79D-C50C-4C12-A3DB-3609D86FCA11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E4BB79D-C50C-4C12-A3DB-3609D86FCA11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E4BB79D-C50C-4C12-A3DB-3609D86FCA11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0164DCCE-24BB-4E65-AD21-A54D359E0BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0164DCCE-24BB-4E65-AD21-A54D359E0BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0164DCCE-24BB-4E65-AD21-A54D359E0BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0164DCCE-24BB-4E65-AD21-A54D359E0BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3747E8EA-007E-41A0-99E8-861E308D6960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3747E8EA-007E-41A0-99E8-861E308D6960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3747E8EA-007E-41A0-99E8-861E308D6960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3747E8EA-007E-41A0-99E8-861E308D6960}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
