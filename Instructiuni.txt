@@ -1,0 +1,28 @@
+BD :
+- am creat un script de generare baze de date schem + date de test
+
+Aplicatie:
+am creat 2 proiecte pentru a separa responsabilitatile
+	1.Toolshed - care ar trebui sa se ocupe numai  cu partea de operatii de baze de date
+	2. ToolshedWebServices - serviciile care sunt efectiv apleate de aplicatia mobila si care folosesc proiectul Toolshed 
+
+
+Pentru inceput cand instalezi baza de date modifici 
+  <connectionStrings>
+    <add name="MagaziaSculeEntities" connectionString="metadata=res://*/ToolshedModel.csdl|res://*/ToolshedModel.ssdl|res://*/ToolshedModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=localhost;initial catalog=MagaziaScule;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  </connectionStrings>
+in functie de unde ii baza de date
+
+
+In pagina WebForm1.aspx am create metodele de test pentru folosirea repository-ului. 
+WebForm1.aspx ar fi serviciul care ia ca parametru "type" - care ar fi numele metodei care trebuie apelata.
+Folosind entuty framework apelul la baza de date s-ar face foarte usor.
+
+Ce ar mai trebui sa discutam :
+	1. Daca formatul raspunsului(din pagina WebForm1.aspx) ii ok pentru android. Asa am folosit la fosta firma, merge repede si ii usor de implemntat si testat.
+	2. Daca ar trebui sa crestem complexitatea proiectului creand si un controller(mvc).
+	3. Care ar fi modul in care dispozitivul mobil posteaza datele la server. Am creat un exemplu in fisierul ServiceTEster.este acolo un post de Ajax. 
+
+
+
+
